@@ -336,7 +336,7 @@ class PositionFile:
         """
         return_pass = None
         # 2do: make better filename split/remove extension because this one has problems with "." in path
-        base_filename, ext1, ext2 = re.split('\.', self._file)
+        base_filename, ext1, ext2 = re.split(r'\.', self._file)
         password_file_path = base_filename + ".pcap.cracked"
         if os.path.isfile(password_file_path):
             try:
