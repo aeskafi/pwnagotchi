@@ -44,6 +44,12 @@ class Server:
             CSRFProtect(app)
             Handler(self._config, self._agent, app)
 
+            if self._config.get('username') == 'changeme' or self._config.get('password') == 'changeme':
+                logging.warning(
+                    "[SECURITY WARNING] Web UI is configured with default credentials ('changeme'). "
+                    "Please set strong credentials in /etc/pwnagotchi/config.toml or environment variables."
+                )
+
             logging.info("web ui available at http://%s:%d/" % (self._address, self._port))
 
             app.run(host=self._address, port=self._port, debug=False)
